@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import Form from './components/Form';
-import Recipes from './components/Recipes';
 
+import Form from "./components/Form";
+import Recipes from "./components/Recipes";
 
-
-const API_KEY = 'f22ce42bbcafca9b1e5dc59852910c69';
+const API_KEY = "26e3fb7cbe0d134ee6c6a281d83529c3";
 
 class App extends Component {
+  
   state = {
     recipes: []
   }
@@ -15,11 +15,20 @@ class App extends Component {
     const recipeName = e.target.elements.recipeName.value;
     e.preventDefault();
     const api_call = await fetch(`https://www.food2fork.com/api/search?key=${API_KEY}&q=${recipeName}&count=10`);
-   const data = await api_call.json();
-   this.setState({ recipes: data.recipes });
+    
+    const data = await api_call.json();
+    this.setState({ recipes: data.recipes });
     console.log(this.state.recipes);
   }
-
+  componentDidMount = () => {
+    const json = localStorage.getItem("recipes");
+    const recipes = JSON.parse(json);
+    this.setState({ recipes });
+  }
+  componentDidUpdate = () => {
+    const recipes = JSON.stringify(this.state.recipes);
+    localStorage.setItem("recipes", recipes);
+  }
   render() {
     return (
       <div className="App">
