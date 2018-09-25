@@ -10,34 +10,37 @@ import Recipes from "./components/Recipes";
 const API_KEY = "c99d8bff072e2698bb725d875ea1a47e";
 
 class App extends Component {
-  
   state = {
     page: 1,
     recipes: [],
     recipeName: ''
   }
-  handleFormSubmit = async(e) => {
+ 
+  handleFormSubmit = async (e) => {
     const recipeName = e.target.elements.recipeName.value;
     e.preventDefault();
     this.setState({
       ...this.state,
       page: 1,
-      recipeName: recipeName
+      recipeName: recipeName,
     })
     this.getRecipe()
   }
-
   getRecipe = async () => {
-    const {page, recipeName} = this.state
-    const api_call = await fetch(`https://cors-anywhere.herokuapp.com/http://food2fork.com/api/search?key=${API_KEY}&q=${recipeName}&count=15&page=${page}`);
+    const page = this.state.page;
+    const recipeName = this.state.recipeName;
+    const api_call = await fetch(`https://cors-anywhere.herokuapp.com/http://food2fork.com/api/search?key=${API_KEY}&q=${recipeName}&count=10&page=${page}`);
     
     const data = await api_call.json();
     this.setState({
+      ...this.state,
+      page: 1,
       recipes: data.recipes,
       recipeName: recipeName
     });
     console.log(this.state.recipes);
   }
+  
   componentDidMount = () => {
     const json = localStorage.getItem("recipes");
     const recipes = JSON.parse(json);
@@ -47,7 +50,6 @@ class App extends Component {
     const recipes = JSON.stringify(this.state.recipes);
     localStorage.setItem("recipes", recipes);
   }
-
   handleNextClick = () => {
     this.setState({
       ...this.state,
@@ -68,7 +70,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <div className="flex-container">
-            <a href="/"><img src={logo} /></a>
+            <a href="/"><img src={logo} alt={logo}/></a>
             <Navbar />
           </div>
         </header>
@@ -83,15 +85,16 @@ class App extends Component {
             <div className="col-md-6 form-container">
               <h2>Looking for a chicken dish? Beef? 
                 Narrow your search by main ingredient to find recipes and meal ideas fast</h2>
-                <Form getRecipe={this.getRecipe} /></div>
+                <Form getRecipe={this.getRecipe} />
+                </div>
           </div>
         </div>
         
         <Recipes recipes={this.state.recipes} />
         <button className="form__button" onClick={this.handlePrevClick}>Prev</button>
         <button className="form__button" onClick={this.handleNextClick}>Next</button>
-        <footer class="page-footer font-small grey pt-4">       
-    <div class="footer-copyright text-center py-3">© 2018 Copyright</div>
+        <footer className="page-footer font-small grey pt-4">       
+    <div className="footer-copyright text-center py-3">© 2018 Copyright</div>
   </footer>
       </div>
     );

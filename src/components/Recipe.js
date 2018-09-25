@@ -1,7 +1,4 @@
 import React from 'react';
-import { Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button } from 'reactstrap';
-
 import { Link } from "react-router-dom";
 
 const API_KEY = "c99d8bff072e2698bb725d875ea1a47e";
