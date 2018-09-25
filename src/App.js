@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import logo from './components/img/logo.png';
+import Header from "./components/Header";
 import Slider from './components/Slider';
 import Form from "./components/Form";
 import Recipes from "./components/Recipes";
 
-const API_KEY = "26e3fb7cbe0d134ee6c6a281d83529c3";
+
+const API_KEY = "c99d8bff072e2698bb725d875ea1a47e";
 
 class App extends Component {
   
@@ -34,18 +35,20 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <div className="flex-container">
-            <a href="/"><img className="logo" src={logo} /></a>
-            <h1 className="App-title">Recipe Book</h1>
-          </div>
+            <Header />
         </header>
+        <div className="slider">
           <Slider />
+        </div>
         <div className="wrappper">
           <div className="row">
             <div className="col-md-6 title-container">
               <h2>We make finding fantastic recipes easy with searching by ingredients</h2>
             </div>
-            <div className="col-md-6 form-container"><Form getRecipe={this.getRecipe} /></div>
+            <div className="col-md-6 form-container">
+              <h2>Looking for a chicken dish? Beef? 
+                Narrow your search by main ingredient to find recipes and meal ideas fast</h2>
+              <Form getRecipe={this.getRecipe} /></div>
           </div>
         </div>
         

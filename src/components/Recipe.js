@@ -4,7 +4,7 @@ import { Card, CardImg, CardText, CardBody,
 
 import { Link } from "react-router-dom";
 
-const API_KEY = "26e3fb7cbe0d134ee6c6a281d83529c3";
+const API_KEY = "c99d8bff072e2698bb725d875ea1a47e";
 
 class Recipe extends React.Component {
   state = {
@@ -34,8 +34,11 @@ class Recipe extends React.Component {
             <h4 className="active-recipe__publisher">
               Publisher: <span>{ recipe.publisher }</span>
             </h4>
-            <p className="active-recipe__website">Website: 
-               <span><a href={recipe.publisher_url}>{recipe.publisher_url}</a></span>
+            <p className="active-recipe__website">Source: 
+               <span>&nbsp;<a href={recipe.publisher_url}>{recipe.publisher_url}</a></span>
+            </p>
+            <p className="active-recipe__website">View on website: 
+               <span>&nbsp;<a href={recipe.source_url}>{recipe.source_url}</a></span>
             </p>
             <button className="active-recipe__button">
               <Link to="/">Go Home</Link>

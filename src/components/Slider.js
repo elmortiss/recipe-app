@@ -9,7 +9,7 @@ import {
 
 const items = [
     {
-      src: 'https://static.kidspot.com.au/cm_assets/699/easy-desserts_690x414-20150330055851.jpg~q75,dx720y432u1r1gg,c--.jpg',
+      src: `{process.env.PUBLIC_URL + '/slider/slide1.jpg'} />`,
       altText: 'Make it easy to find great recipes',
       caption: 'Make it easy to find great recipes'
     },
