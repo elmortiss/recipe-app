@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Link } from "react-router-dom";
-import { Target } from 'react-popper';
+
 
 const Recipes = props => (
   <div className="container">
@@ -11,7 +11,7 @@ const Recipes = props => (
         <div key={recipe.title} className="col-md-4" style={{ marginTop:"2rem" }}>
           <div className="recipes__box">
             <img 
-              className="recipes_img" 
+              className="recipes_img img-fluid " 
               src={recipe.image_url} 
               alt={recipe.title}/>
               <div className="recipe__text">
@@ -29,7 +29,7 @@ const Recipes = props => (
                 <Link to={{ 
                   pathname: `/recipe/${recipe.recipe_id}`,
                   state: { recipe: recipe.title }
-                }} >View Recipe</Link>
+                }}>View Recipe</Link>
               </button>
           </div>
         </div>

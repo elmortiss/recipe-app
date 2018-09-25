@@ -9,19 +9,19 @@ import {
 
 const items = [
     {
-      src: `{process.env.PUBLIC_URL + '/slider/slide1.jpg'} />`,
+      src: `${process.env.PUBLIC_URL}/slider/slide1.jpg`,
       altText: 'Make it easy to find great recipes',
       caption: 'Make it easy to find great recipes'
     },
     {
-      src: 'http://www.bumblebee.com/wp-content/themes/bumblebee-responsive/library/img/bb-recipe-ia-hero.png',
-      altText: 'Make it easy to find great recipes',
-      caption: 'Make it easy to find great recipes'
+      src: `${process.env.PUBLIC_URL}/slider/slide2.png`,
+      altText: 'All our recipes are tested thoroughly by us to make sure they’re suitable for your kitchen at home',
+      caption: 'All our recipes are tested thoroughly by us to make sure they’re suitable for your kitchen at home'
     },
     {
-      src: 'http://piper.al/wp-content/uploads/2017/12/trahana-1.jpg',
-      altText: 'Make it easy to find great recipes',
-      caption: 'Make it easy to find great recipes'
+      src: `${process.env.PUBLIC_URL}/slider/slide3.jpg`,
+      altText: 'Enter ingredients, get recipe',
+      caption: 'Enter ingredients, get recipe'
     }
   ];
   class Slider extends Component {

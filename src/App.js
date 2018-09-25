@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Header from "./components/Header";
+import logo from './components/img/logo.png';
+import Navbar from './components/Navbar';
 import Slider from './components/Slider';
 import Form from "./components/Form";
 import Recipes from "./components/Recipes";
@@ -11,15 +12,30 @@ const API_KEY = "c99d8bff072e2698bb725d875ea1a47e";
 class App extends Component {
   
   state = {
-    recipes: []
+    page: 1,
+    recipes: [],
+    recipeName: ''
   }
-  getRecipe = async (e) => {
+  handleFormSubmit = async(e) => {
     const recipeName = e.target.elements.recipeName.value;
     e.preventDefault();
-    const api_call = await fetch(`https://cors-anywhere.herokuapp.com/http://food2fork.com/api/search?key=${API_KEY}&q=${recipeName}&count=30`);
+    this.setState({
+      ...this.state,
+      page: 1,
+      recipeName: recipeName
+    })
+    this.getRecipe()
+  }
+
+  getRecipe = async () => {
+    const {page, recipeName} = this.state
+    const api_call = await fetch(`https://cors-anywhere.herokuapp.com/http://food2fork.com/api/search?key=${API_KEY}&q=${recipeName}&count=15&page=${page}`);
     
     const data = await api_call.json();
-    this.setState({ recipes: data.recipes });
+    this.setState({
+      recipes: data.recipes,
+      recipeName: recipeName
+    });
     console.log(this.state.recipes);
   }
   componentDidMount = () => {
@@ -31,11 +47,30 @@ class App extends Component {
     const recipes = JSON.stringify(this.state.recipes);
     localStorage.setItem("recipes", recipes);
   }
+
+  handleNextClick = () => {
+    this.setState({
+      ...this.state,
+      page: this.state.page +1
+    })
+    this.getRecipe()
+  }
+
+  handlePrevClick = () => {
+    this.setState({
+      ...this.state,
+      page: this.state.page -1
+    })
+    this.getRecipe()
+  }
   render() {
     return (
       <div className="App">
         <header className="App-header">
-            <Header />
+          <div className="flex-container">
+            <a href="/"><img src={logo} /></a>
+            <Navbar />
+          </div>
         </header>
         <div className="slider">
           <Slider />
@@ -48,11 +83,13 @@ class App extends Component {
             <div className="col-md-6 form-container">
               <h2>Looking for a chicken dish? Beef? 
                 Narrow your search by main ingredient to find recipes and meal ideas fast</h2>
-              <Form getRecipe={this.getRecipe} /></div>
+                <Form getRecipe={this.getRecipe} /></div>
           </div>
         </div>
         
         <Recipes recipes={this.state.recipes} />
+        <button className="form__button" onClick={this.handlePrevClick}>Prev</button>
+        <button className="form__button" onClick={this.handleNextClick}>Next</button>
         <footer class="page-footer font-small grey pt-4">       
     <div class="footer-copyright text-center py-3">© 2018 Copyright</div>
   </footer>

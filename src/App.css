@@ -15,6 +15,7 @@ a {
   color: #e74c3c !important;
 }
 
+
 .App {
   text-align: center;
 }
@@ -34,24 +35,23 @@ button:focus {
   z-index: 9999;
   background-color: #47535f;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
-  height: 130px;
+  height: 30%;
   color: white;
 }
 .flex-container{
   display: flex;
   flex-wrap: wrap;
   flex-direction:row;
-  justify-content: stretch;
+  justify-content: space-between;
   align-items:center;
   margin-left: 30px;
 }
-  
 
-.logo{
-  width:100%;
-  height:130px;
+.nav-item{
+  padding-right: 30px;
+  font-size: 20px;
+
 }
-
 /******** End of Header ********/
 
 /******** Form section ********/
@@ -128,6 +128,7 @@ input:-webkit-autofill {
 }
 
 .recipes__box {
+  margin-bottom:10px;
   background: #fff;
   height:400px;
   padding-bottom: 2rem;

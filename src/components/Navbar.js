@@ -1,10 +1,8 @@
 import React from 'react';
-import logo from './img/logo.png';
 import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
   NavLink,
@@ -29,14 +27,13 @@ export default class Example extends React.Component {
   }
   render() {
     return (
-      <div className="flex-container">
+      <div>
         <Navbar light expand="md">
-          <NavbarBrand href="/"><img className="logo" src={logo} /></NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="https://www.food2fork.com/" target="_blank">More recipes</NavLink>
+                <NavLink href="https://www.food2fork.com/" target="_blank">More Recipes</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
