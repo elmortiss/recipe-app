@@ -16,25 +16,23 @@ class App extends Component {
     recipeName: ''
   }
  
-  handleFormSubmit = async (e) => {
+  handleFormSubmit = (e) => {
     const recipeName = e.target.elements.recipeName.value;
     e.preventDefault();
     this.setState({
       ...this.state,
       page: 1,
       recipeName: recipeName,
-    })
-    this.getRecipe()
+    }, this.getRecipe)
   }
   getRecipe = async () => {
     const page = this.state.page;
     const recipeName = this.state.recipeName;
-    const api_call = await fetch(`https://cors-anywhere.herokuapp.com/http://food2fork.com/api/search?key=${API_KEY}&q=${recipeName}&count=10&page=${page}`);
+    const api_call = await fetch(`https://cors-anywhere.herokuapp.com/http://food2fork.com/api/search?key=${API_KEY}&q=${this.state.recipeName}&count=10&page=${page}`);
     
     const data = await api_call.json();
     this.setState({
       ...this.state,
-      page: 1,
       recipes: data.recipes,
       recipeName: recipeName
     });
@@ -85,7 +83,7 @@ class App extends Component {
             <div className="col-md-6 form-container">
               <h2>Looking for a chicken dish? Beef? 
                 Narrow your search by main ingredient to find recipes and meal ideas fast</h2>
-                <Form getRecipe={this.getRecipe} />
+                <Form getRecipe={this.handleFormSubmit} />
                 </div>
           </div>
         </div>

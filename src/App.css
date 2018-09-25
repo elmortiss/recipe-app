@@ -102,6 +102,18 @@ button:focus {
   margin-left: 0.7rem;
 }
 
+.form__button ::hover{
+
+  background: #e74c3c;
+  padding: 0.2rem 0.9rem;
+  margin: 0 0.2rem;
+  border-radius: 1px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-left: 0.7rem;
+}
+
 input[type="text"] { 
   outline: none;
   font-size: 1.2rem;

@@ -18,11 +18,6 @@ class Recipe extends React.Component {
   render() {
     const recipe = this.state.activeRecipe;
     return (
-
-
-
-
-      
       <div className="container">
         { this.state.activeRecipe.length !== 0 &&
           <div className="active-recipe">
